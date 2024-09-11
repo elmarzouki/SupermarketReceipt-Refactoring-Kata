@@ -1,0 +1,10 @@
+version: "1.0"
+
+services:
+  cart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cart_python_app
+    command: pytest
+
