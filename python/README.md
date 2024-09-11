@@ -32,10 +32,11 @@ we can always solve and enhance.. but here's the selected enhancments:
 * added some validations, examples: 
     - validate no overflow in the columns size at def format_line_with_whitespace().
     - validate non-negative prams passed to add_product.
-* ShoppingCart sperate some specific logic Ex: offers into private methods:
+* Separated some specific logic at ShoppingCart Ex: offers into private methods:
     for easier maintainability, avoiding duplication and applying encapsulation.
 * ShoppingCart.handle_offers: code enhancment: 
     - remove neasted if statments for easier maintainability and debugging.
     - enhance variables names Ex: p into product
 * Adapting Strategy pattern for the offers calculations.
 * Used int with cents instead of float on amount and prices to avoid rounding issues.
+* Used black and isort.

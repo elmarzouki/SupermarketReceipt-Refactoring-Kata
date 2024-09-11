@@ -1,5 +1,5 @@
-from models.product import Product, ProductUnit
 from models.offer import SpecialOfferType
+from models.product import Product, ProductUnit
 from shopping_cart import ShoppingCart
 from teller import Teller
 from tests.fake_catalog import FakeCatalog

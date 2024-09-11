@@ -2,3 +2,5 @@ approvaltests
 python-dateutil
 pytest-approvaltests
 
+black
+isort

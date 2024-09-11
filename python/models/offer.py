@@ -1,5 +1,7 @@
 from enum import Enum
+
 from .product import Product
+
 
 class SpecialOfferType(Enum):
     THREE_FOR_TWO = 1
@@ -15,5 +17,7 @@ class Offer:
         self.argument = argument
 
     def __repr__(self):
-        return (f"Offer(offer_type={self.offer_type.name}, "
-                f"product={self.product}, argument={self.argument})")
+        return (
+            f"Offer(offer_type={self.offer_type.name}, "
+            f"product={self.product}, argument={self.argument})"
+        )
