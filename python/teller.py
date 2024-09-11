@@ -1,9 +1,9 @@
-from models.offer import Offer
-from models.receipt import Receipt
 from catalog import SupermarketCatalog as Catalog
-from shopping_cart import ShoppingCart
-from models.offer import SpecialOfferType
+from models.offer import Offer, SpecialOfferType
 from models.product import Product
+from models.receipt import Receipt
+from shopping_cart import ShoppingCart
+
 
 class Teller:
 
@@ -12,8 +12,11 @@ class Teller:
         self.offers = {}
 
     # TODO:// maybe this one needed to be handled by some kind of manager
-    def add_special_offer(self, offer_type: SpecialOfferType, product: Product, argument: int) -> None:
+    def add_special_offer(
+        self, offer_type: SpecialOfferType, product: Product, argument: int
+    ) -> None:
         self.offers[product] = Offer(offer_type, product, argument)
+
     # and teller can check out items only
     def checks_out_articles_from(self, the_cart: ShoppingCart) -> Receipt:
         receipt = Receipt()

@@ -1,15 +1,17 @@
 from typing import List
-from models.product import ProductUnit
+
 from models.discount import Discount
+from models.product import ProductUnit
 from models.receipt import Receipt, ReceiptItem
+
 
 class ReceiptPrinter:
 
     def __init__(self, columns: int = 40) -> None:
         self.columns = columns
-  
+
     def print_receipt(self, receipt: Receipt) -> str:
-        lines: List[str] = [] # replace string concat with list[str]
+        lines: List[str] = []  # replace string concat with list[str]
 
         for item in receipt.items:
             receipt_item = self.print_receipt_item(item)
@@ -35,7 +37,7 @@ class ReceiptPrinter:
     def format_line_with_whitespace(self, name: str, value: str) -> str:
         # validate no overflow in the columns size
         if len(name) + len(value) > self.columns:
-            name = name[:self.columns - len(value) - 1] + "…"
+            name = name[: self.columns - len(value) - 1] + "…"
         whitespace_size = self.columns - len(name) - len(value)
         # line = name + " " * whitespace_size + value + "\n"
         line = name + " ".ljust(whitespace_size) + value + "\n"
@@ -48,7 +50,7 @@ class ReceiptPrinter:
         if ProductUnit.EACH == item.product.unit:
             return str(item.quantity)
         else:
-            return '%.3f' % item.quantity
+            return "%.3f" % item.quantity
 
     def print_discount(self, discount: Discount) -> str:
         name = f"{discount.description} ({discount.product.name})"

@@ -1,6 +1,6 @@
 from catalog import SupermarketCatalog
-
 from models.product import Product
+
 
 class FakeCatalog(SupermarketCatalog):
     def __init__(self):
@@ -13,4 +13,3 @@ class FakeCatalog(SupermarketCatalog):
 
     def unit_price(self, product: Product):
         return self.prices[product.name]
-

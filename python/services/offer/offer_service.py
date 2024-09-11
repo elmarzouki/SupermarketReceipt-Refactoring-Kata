@@ -1,14 +1,9 @@
-from models.offer import SpecialOfferType
 from models.discount import Discount
+from models.offer import Offer, SpecialOfferType
 from models.product import Product
-from models.offer import Offer
+from services.offer.offer_strategy import (FiveForAmountOffer, TenPercentOffer,
+                                           ThreeForTwoOffer, TwoForAmountOffer)
 
-from services.offer.offer_strategy import (
-    ThreeForTwoOffer,
-    TwoForAmountOffer,
-    FiveForAmountOffer,
-    TenPercentOffer,
-)
 
 class OfferService:
     def __init__(self):
@@ -19,7 +14,9 @@ class OfferService:
             SpecialOfferType.TEN_PERCENT_DISCOUNT: TenPercentOffer(),
         }
 
-    def apply_offer(self, offer: Offer, product: Product, quantity: int, unit_price: int) -> Discount:
+    def apply_offer(
+        self, offer: Offer, product: Product, quantity: int, unit_price: int
+    ) -> Discount:
         strategy = self._strategies.get(offer.offer_type)
         if strategy:
             return strategy.calculate_discount(product, quantity, unit_price, offer)

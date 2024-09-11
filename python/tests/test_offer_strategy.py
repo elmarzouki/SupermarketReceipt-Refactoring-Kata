@@ -1,17 +1,15 @@
 import pytest
-from models.product import Product, ProductUnit
+
 from models.discount import Discount
 from models.offer import Offer, SpecialOfferType
-from services.offer.offer_strategy import (
-    ThreeForTwoOffer,
-    TwoForAmountOffer,
-    FiveForAmountOffer,
-    TenPercentOffer
-)
+from models.product import Product, ProductUnit
+from services.offer.offer_strategy import (FiveForAmountOffer, TenPercentOffer,
+                                           ThreeForTwoOffer, TwoForAmountOffer)
 
 # Create some reusable product and offer objects for the tests
 apple = Product("Apple", ProductUnit.EACH)
 banana = Product("Banana", ProductUnit.EACH)
+
 
 def test_three_for_two_offer():
     offer = Offer(SpecialOfferType.THREE_FOR_TWO, apple, 0)
@@ -33,6 +31,7 @@ def test_three_for_two_offer():
     discount = strategy.calculate_discount(apple, 2, 100, offer)
     assert discount is None
 
+
 def test_two_for_amount_offer():
     offer = Offer(SpecialOfferType.TWO_FOR_AMOUNT, banana, 150)
     strategy = TwoForAmountOffer()
@@ -52,6 +51,7 @@ def test_two_for_amount_offer():
     discount = strategy.calculate_discount(banana, 1, 100, offer)
     assert discount is None
 
+
 def test_five_for_amount_offer():
     offer = Offer(SpecialOfferType.FIVE_FOR_AMOUNT, apple, 400)
     strategy = FiveForAmountOffer()
@@ -70,6 +70,7 @@ def test_five_for_amount_offer():
     # Case 3: Buy less than 5 items, no discount
     discount = strategy.calculate_discount(apple, 3, 100, offer)
     assert discount is None
+
 
 def test_ten_percent_offer():
     offer = Offer(SpecialOfferType.TEN_PERCENT_DISCOUNT, banana, 10)
